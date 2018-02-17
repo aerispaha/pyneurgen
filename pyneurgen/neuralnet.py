@@ -23,7 +23,7 @@ This module implements the components for an artficial neural network.
 """
 import math
 from random import random
-import ConfigParser
+import configparser
 
 from pyneurgen.layers import Layer
 from pyneurgen.nodes import Node, CopyNode, BiasNode, Connection
@@ -610,8 +610,7 @@ class NeuralNet(object):
             if show_sample_interval > 0:
                 if count % show_sample_interval == 0:
                     #   Convert to logging at some point
-                    print "sample: %s errors: %s" % (
-                        count, summed_errors)
+                    print ("sample: {} errors: {}" .format(count, summed_errors))
 
         self.mse = self.calc_mse(summed_errors, count)
         return self.mse
@@ -855,7 +854,7 @@ class NeuralNet(object):
 
         """
 
-        config = ConfigParser.ConfigParser()
+        config = configparser.ConfigParser()
         config.readfp(open(filename))
 
         hidden_neurons = config.get('net', 'hidden_neurons').split(",")
